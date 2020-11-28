@@ -142,7 +142,8 @@ class SyncServer extends Command
         $activeEntity = $ServerMapsPlayers->first();
 
 
-        if( $activeEntity->team!=$player->team && Carbon::parse($this->date_session_created)->diffInMinutes() >= 5 ){
+      #  dd( Carbon::parse($activeEntity->date_created)->diffInMinutes() );
+        if( $activeEntity->team!=$player->team && Carbon::parse($activeEntity->date_created)->diffInMinutes() >= 5 ){
             $activeEntity->changed = true;
             $activeEntity->save();
         }
