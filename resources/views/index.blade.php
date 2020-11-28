@@ -12,15 +12,28 @@
             <th></th>
         </tr>
         </thead>
-        @foreach( $maps as $map)
+        @foreach( $maps as $session)
         <tr>
-            <td>{{ $map->mapname }}</td>
-            <td>{{ $map->gametype }}</td>
-            <td>{{ $map->status }}</td>
-            <td>{{ $map->created_at->format(env('DATE_FORMAT')) }}  - {{ $map->created_at->diffForHumans() }}</td>
-            <td>{{ $map->updated_at->format(env('DATE_FORMAT')) }}  - {{ $map->updated_at->diffForHumans() }}</td>
+            <td>{{ $session->mapname }}</td>
+            <td>{{ $session->gametype }}</td>
             <td>
-                <a href="/session/{{ $map->id }}">View</a>
+                @if($session->status == 'running')
+                    <span class="badge badge-success">Running</span>
+                @endif
+                @if($session->status == 'terminated')
+                    <span class="badge badge-danger">Finished</span>
+                @endif
+                @if($session->status == 'invalid')
+                    <span class="badge badge-light">Empty</span>
+                @endif
+                @if($session->status == 'offline')
+                    <span class="badge badge-danger">Offline</span>
+                @endif
+            </td>
+            <td>{{ $session->created_at->format(env('DATE_FORMAT')) }}  - {{ $session->created_at->diffForHumans() }}</td>
+            <td>{{ $session->updated_at->format(env('DATE_FORMAT')) }}  - {{ $session->updated_at->diffForHumans() }}</td>
+            <td>
+                <a href="/session/{{ $session->id }}">View</a>
             </td>
         </tr>
         @endforeach

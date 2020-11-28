@@ -46,14 +46,14 @@ class SyncServer extends Command
              ->get();
         });
 
-      #  $data = trim($data);
 
-        #print_r($data);
-
+        $offline = true;
 
         foreach(collect( $data->servers  )->toArray() as $block_server){
 
             if( $block_server->serverIp == env('REALITY_IP')){
+
+                $offline = false;
 
                 $this->readMapProperties($block_server->properties);
 
@@ -74,6 +74,17 @@ class SyncServer extends Command
              #   dd($block_server->properties);
             }
         }
+        if($offline){
+            $entity = ServerMaps::where('status','offline')->first();
+
+            ServerMaps::where('status','running')->update([
+                'status'=>'offline'
+            ]);
+            ServerMapsPlayers::where('id_session',$entity->id)->update([
+                'online'=>false
+            ]);
+        }
+
     }
 
     public function readMapProperties( $properties ){

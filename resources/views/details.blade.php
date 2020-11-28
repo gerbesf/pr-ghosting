@@ -21,6 +21,9 @@
         @if($session->status == 'invalid')
             <span class="badge badge-light">Empty</span>
         @endif
+        @if($session->status == 'offline')
+            <span class="badge badge-danger">Offline</span>
+        @endif
     </div>
     <div>
         Created: {{ $session->created_at->format(env('DATE_FORMAT')) }}  - {{ $session->created_at->diffForHumans() }}
