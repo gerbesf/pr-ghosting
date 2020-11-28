@@ -2,7 +2,7 @@
 
 ##### Database SQLite Requeriments
 ```
-sudo apt install php7.3-sqlite3
+sudo apt install php7.4-sqlite3
 ```
 
 ##### Server Environment
