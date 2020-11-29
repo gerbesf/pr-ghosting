@@ -1,14 +1,16 @@
 @extends('layout')
 @section('main')
+    <meta http-equiv="refresh" content="60; URL='{{ env('APP_URL') }}session/{{ $session->id }}'"/>
 
-    <a href="/">Back</a>
+    <div class="p-3">
 
+        <a href="/">Back</a>
+
+    </div>
+    <div class="card card-body">
     <h3>{{ $session->mapname }}</h3>
     <div>
-        Mapname: {{ $session->mapname }}
-    </div>
-    <div>
-        Gametype: {{ $session->gametype }}
+        Mapname: <b>{{ $session->mapname }} </b> {{ $session->gametype }}
     </div>
     <div>
         Status: {{ $session->status }}
@@ -31,7 +33,11 @@
     <div>
         Updated: {{ $session->updated_at->format(env('DATE_FORMAT')) }}  - {{ $session->updated_at->diffForHumans() }}
     </div>
+    <div>
+        Rendered: {{ \Carbon\Carbon::now()->format(env('DATE_FORMAT')) }} - {{ \Carbon\Carbon::now()->diffForHumans() }}
+    </div>
 
+    </div>
     <br>
 
     <div class="card card-body">
