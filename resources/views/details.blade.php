@@ -1,6 +1,6 @@
 @extends('layout')
 @section('main')
-    <meta http-equiv="refresh" content="60; URL='{{ env('APP_URL') }}session/{{ $session->id }}'"/>
+    <meta http-equiv="refresh" content="20; URL='{{ env('APP_URL') }}session/{{ $session->id }}'"/>
 
     <div class="p-3">
 
