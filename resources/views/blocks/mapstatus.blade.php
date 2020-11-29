@@ -9,6 +9,9 @@
     @if($session->status == 'invalid')
         <span class="badge badge-light">Empty</span>
     @endif
+    @if($session->status == 'inative')
+        <span class="badge badge-light">Inativo</span>
+    @endif
     @if($session->status == 'offline')
         <span class="badge badge-danger">Offline</span>
     @endif
