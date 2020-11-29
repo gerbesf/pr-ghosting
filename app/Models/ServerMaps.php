@@ -11,6 +11,9 @@ class ServerMaps extends Model
     protected $fillable = [
         'mapname',
         'gametype',
+        'mapsize',
+        'numplayers',
+        'maxplayers',
         'status',
     ];
 

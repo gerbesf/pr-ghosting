@@ -17,10 +17,14 @@ class ServerMaps extends Migration
             $table->id();
             $table->string('mapname');
             $table->string('gametype');
+            $table->string('mapsize');
+            $table->integer('numplayers');
+            $table->integer('maxplayers');
             $table->string('status')->default('inative');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

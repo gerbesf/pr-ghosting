@@ -4,36 +4,35 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Map Name</th>
-            <th>Game Type</th>
+            <th>Map</th>
+            <th>Name</th>
             <th>Status</th>
+            <th>Players</th>
             <th>Created</th>
             <th>Last Update</th>
-            <th></th>
+            <th>Details</th>
         </tr>
         </thead>
         @foreach( $maps as $session)
-        <tr>
-            <td>{{ $session->mapname }}</td>
-            <td>{{ $session->gametype }}</td>
-            <td>
-                @if($session->status == 'running')
-                    <span class="badge badge-success">Running</span>
-                @endif
-                @if($session->status == 'terminated')
-                    <span class="badge badge-danger">Finished</span>
-                @endif
-                @if($session->status == 'invalid')
-                    <span class="badge badge-light">Empty</span>
-                @endif
-                @if($session->status == 'offline')
-                    <span class="badge badge-danger">Offline</span>
-                @endif
+        <tr class="border-bottom">
+            <td class="p-0 text-center bg-dark">
+                <img width="64" src="https://www.realitymod.com/mapgallery/images/maps/{{ str_replace(' ','',strtolower($session->mapname)) }}/mapoverview_{{ $session->gametype }}_{{ $session->mapsize }}.jpg">
             </td>
-            <td>{{ $session->created_at->format(env('DATE_FORMAT')) }}  - {{ $session->created_at->diffForHumans() }}</td>
-            <td>{{ $session->updated_at->format(env('DATE_FORMAT')) }}  - {{ $session->updated_at->diffForHumans() }}</td>
             <td>
-                <a href="/session/{{ $session->id }}">View</a>
+                <h4 class="p-0 font-weight-bold">{{ $session->mapname }}</h4>
+                <code>{{ $session->gametype }}</code>
+            </td>
+            <td>
+                @include('blocks.mapstatus')
+            </td>
+            <td>
+                {{ $session->numplayers }} /
+                {{ $session->maxplayers }}
+            </td>
+            <td>{{ $session->created_at->format(env('DATE_FORMAT')) }} <br><small> {{ $session->created_at->diffForHumans() }}</small></td>
+            <td>{{ $session->updated_at->format(env('DATE_FORMAT')) }} <br><small> {{ $session->updated_at->diffForHumans() }}</small></td>
+            <td>
+                <a class="btn btn-primary" href="/session/{{ $session->id }}">View</a>
             </td>
         </tr>
         @endforeach

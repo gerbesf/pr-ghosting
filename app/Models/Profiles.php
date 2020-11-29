@@ -11,6 +11,7 @@ class Profiles extends Model
     protected $fillable = [
         'id_clan',
         'id_steam',
+        'profile_index',
         'nickname',
         'hash',
         'steam_level',

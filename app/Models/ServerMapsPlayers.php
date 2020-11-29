@@ -10,17 +10,25 @@ class ServerMapsPlayers extends Model
 
     protected $fillable = [
         'id_session',
+        'profile_index',
+        'clan',
         'nickname',
-        'nickname_md5',
         'team',
         'online',
+        'online_time',
         'changed',
+        'changed_times',
+    ];
+
+    public $casts = [
+        'changed'=>'boolean',
+        'online_time'=>'datetime'
     ];
 
     public $timestamps = true;
 
     public function profile(){
-        return $this->hasOne('\App\Models\Profiles', 'nickname', 'nickname');
+        return $this->hasOne('\App\Models\Profiles', 'profile_index', 'profile_index');
     }
 
 }

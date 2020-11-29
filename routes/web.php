@@ -15,6 +15,7 @@
 
 $router->get('/', 'IndexController@indexPage');
 $router->get('/session/{session_id}', 'IndexController@sessionPage');
+$router->get('/session/{session_id}/trust/{profile_index}', 'IndexController@trustPlayer');
 $router->get('/crond', 'IndexController@crondExec');
 
 # Show random Str do APP_KEY in .env

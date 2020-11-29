@@ -46,6 +46,7 @@ class Profile {
 
         // Get Index Profile
         $Profile = Profiles::firstOrCreate([
+            'profile_index' => md5($bind['nickname']),
             'nickname' => $bind['nickname'],
             'hash' => $bind['hash'],
         ]);

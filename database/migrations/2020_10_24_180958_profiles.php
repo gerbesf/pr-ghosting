@@ -16,13 +16,11 @@ class Profiles extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->integer('points')->default(0);
+            $table->string('profile_index',32);
             $table->string('nickname');
             $table->string('hash');
             $table->integer('steam_level')->nullable();
             $table->json('steam_tags')->nullable();
-            $table->string('status')->default('avaliable');
-            $table->string('password')->nullable();
-            $table->boolean('deleted')->default(false);
             $table->timestamps();
         });
     }
